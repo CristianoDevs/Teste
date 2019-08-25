@@ -6,6 +6,7 @@
 package com.monte.testedebug.view;
 
 import com.monte.testedebug.validar.Mensagens;
+import com.monte.testedebug.validar.Transferir;
 import com.monte.testedebug.validar.Validacao;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -41,6 +42,7 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
         lblCPF = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JButton();
         txtTexto = new javax.swing.JTextField();
+        btnEnviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(480, 156));
@@ -79,6 +81,16 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEnviar.setBackground(new java.awt.Color(153, 255, 51));
+        btnEnviar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEnviar.setText("Enviar");
+        btnEnviar.setBorder(null);
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,11 +103,15 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
                         .addComponent(txtfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(btnValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +126,9 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -144,21 +162,28 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        Transferir transferir = new Transferir();
+        transferir.setCodigo(Integer.parseInt(txtTexto.getText()));   
+        FormTelaCad formTelaCad = new FormTelaCad();
+        formTelaCad.pegarValor(transferir);
+        formTelaCad.operacao = "Alterar";
+        formTelaCad.setLocationRelativeTo(null);
+        formTelaCad.setVisible(true);
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    
+    
     public void desabilitarColar(){
         txtfCPF.setTransferHandler(null);
         txtTexto.setTransferHandler(null);
     }
-    
-    
+   
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -189,6 +214,7 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnValidar;
     private javax.swing.JLabel lblCPF;
