@@ -9,15 +9,18 @@ import com.monte.testedebug.validar.Mensagens;
 import com.monte.testedebug.validar.Transferir;
 
 
+
 public class FormTelaCad extends javax.swing.JFrame {
 
+    public Transferir transferir = new Transferir();
     
     public FormTelaCad() {
         initComponents();
+        
+        
     }
 
     public String operacao;
-    public String codigo;
 
     public String getOperacao() {
         return operacao;
@@ -26,15 +29,7 @@ public class FormTelaCad extends javax.swing.JFrame {
     public void setOperacao(String operacao) {
         this.operacao = operacao;
     }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-   
+  
     private final Mensagens mensagem = new Mensagens();   
     
     @SuppressWarnings("unchecked")
