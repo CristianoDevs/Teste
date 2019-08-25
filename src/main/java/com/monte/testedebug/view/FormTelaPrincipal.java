@@ -139,7 +139,7 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
 			JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(result == JOptionPane.YES_OPTION){
             txtfCPF.setText("");
-        txtTexto.setText("");
+            txtTexto.setText("");
         }
         
     }//GEN-LAST:event_btnLimparActionPerformed
