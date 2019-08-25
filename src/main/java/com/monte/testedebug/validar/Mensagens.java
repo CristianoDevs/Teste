@@ -13,16 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class Mensagens {
     
-    public String MensagemNormal(String campo){
+    public String mensagemNormal(String campo){
         JOptionPane.showMessageDialog(null, campo);
         return null;
     }
     
-    public String exibirMensagemCampoVazio(String campo){
+    public String mensagemCampoVazio(String campo){
         JOptionPane.showMessageDialog(null, "Preencha o campo " + campo, "Campo vazio", JOptionPane.INFORMATION_MESSAGE);
         return null;
     }
-    
-    
-    
 }

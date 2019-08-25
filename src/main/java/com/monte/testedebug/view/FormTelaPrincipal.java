@@ -10,6 +10,7 @@ import com.monte.testedebug.validar.Validacao;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import sun.tools.jar.resources.jar;
 
 /**
  *
@@ -22,6 +23,8 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
      */
     public FormTelaPrincipal() {
         initComponents();
+        txtfCPF.setTransferHandler(null);
+        txtTexto.setTransferHandler(null);
     }
 
     /**
@@ -43,11 +46,6 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(480, 156));
         setMinimumSize(new java.awt.Dimension(480, 156));
         setSize(new java.awt.Dimension(480, 156));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         try {
             txtfCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -123,26 +121,27 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
     
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         if(txtfCPF.getText().equals("   .   .   -  ")){
-            mensagem.exibirMensagemCampoVazio("CPF");
+            mensagem.mensagemCampoVazio("CPF");
         }else{
             String cpf = txtfCPF.getText();        
             String cpfpon = cpf.replace(".", "");
             String cpfTra = cpfpon.replace("-", ""); 
             if(Validacao.isCPF(cpfTra) == true){
-                mensagem.MensagemNormal("CPF valido.");
+                mensagem.mensagemNormal("CPF valido.");
             }else{
-                mensagem.MensagemNormal("CPF Inválido.");
+                mensagem.mensagemNormal("CPF Inválido.");
             }  
         }  
     }//GEN-LAST:event_btnValidarActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        desabilitarColar();
-        System.out.println("Iniciou sucesso!");
-    }//GEN-LAST:event_formWindowOpened
-
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        txtfCPF.setText("");
+        int result = JOptionPane.showConfirmDialog(null, "Deseja limpar estes campos?", "Limpar campos",
+			JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.YES_OPTION){
+            txtfCPF.setText("");
+        txtTexto.setText("");
+        }
+        
     }//GEN-LAST:event_btnLimparActionPerformed
 
     public void desabilitarColar(){
