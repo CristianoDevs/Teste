@@ -135,6 +135,7 @@ public class FormTelaPrincipal extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         desabilitarColar();
+        System.out.println("Iniciou sucesso!");
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
